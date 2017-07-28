@@ -3425,6 +3425,14 @@ aside .widget a {
 .header-filter::before {
   background-color: rgba(0, 0, 0, 0.5);
 }
+.wrapper > .header {
+  min-height: 300px;
+  background-position: center center;
+  background-size: cover;
+}
+.index-page .wrapper > .header {
+  height: 90vh;
+}
 .header-filter .container {
   position: relative;
   z-index: 2;

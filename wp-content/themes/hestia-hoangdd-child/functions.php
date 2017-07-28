@@ -34,18 +34,6 @@ function my_theme_archive_title( $title ) {
 add_filter( 'get_the_archive_title', 'my_theme_archive_title' );
 
 
-function hoangdd_do_header(){
-    echo 'he2';
-}
-function hoangdd_remove_hesita_header(){
-    remove_action( 'hestia_do_header', 'hestia_the_header_content' );
-    remove_action( 'hestia_do_header', 'FLThemeBuilderLayoutRenderer::render_header' );
-    add_action('hestia_do_header','hoangdd_do_header');
-}
-
-/*add_action('init','hoangdd_do_header');*/
-
-add_action('wp_head','hoangdd_remove_hesita_header');
 
 
 	

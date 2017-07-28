@@ -1,9 +1,25 @@
 /*
    Theme Name: Hestia Hoangdd Child
-   Theme URI: https://www.themeisle.com/ 
+   Theme URI: https://www.themeisle.com/
    Description: This is a custom child theme I have created.
    Author: Hoangdd
-   URI: https://www.themeisle.com/ 
+   URI: https://www.themeisle.com/
    Template: hestia
-   Version: 0.1 
+   Version: 0.1
    */
+
+.hoangdd-address{
+    line-height: 24px;
+}
+.hoangdd-address-item{
+    color:white;
+    font-size: 13px;
+}
+
+.hoangdd-address-item > .hoangdd-a-item {
+    color: blue;
+    font-weight: 500;
+}
+.white-color{
+    color: white;
+}
