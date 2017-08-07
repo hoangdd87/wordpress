@@ -36,8 +36,11 @@ if ( ! function_exists( 'hestia_blog' ) ) :
 		if ( $is_shortcode ) {
 			$class_to_add = '';
 		}
+
+		hestia_before_blog_section_trigger();
 		?>
 		<section class="blogs hestia-blogs" id="blog" data-sorder="hestia_blog">
+			<?php hestia_before_blog_section_content_trigger(); ?>
 			<div class="<?php echo esc_attr( $class_to_add ); ?>">
 				<div class="row">
 					<div class="col-md-8 col-md-offset-2 text-center">
@@ -51,8 +54,10 @@ if ( ! function_exists( 'hestia_blog' ) ) :
 				</div>
 				<?php hestia_blog_content( $hestia_blog_items ); ?>
 			</div>
+			<?php hestia_after_blog_section_content_trigger(); ?>
 		</section>
 		<?php
+		hestia_after_blog_section_trigger();
 	}
 
 endif;

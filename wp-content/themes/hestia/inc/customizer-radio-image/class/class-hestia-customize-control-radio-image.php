@@ -63,8 +63,17 @@ class Hestia_Customize_Control_Radio_Image extends WP_Customize_Control {
 				<input type="radio" value="<?php echo esc_attr( $value ); ?>" name="<?php echo esc_attr( "_customize-radio-{$this->id}" ); ?>" id="<?php echo esc_attr( "{$this->id}-{$value}" ); ?>" <?php $this->link(); ?> <?php checked( $this->value(), $value ); ?> />
 
 				<label for="<?php echo esc_attr( "{$this->id}-{$value}" ); ?>">
-					<span class="screen-reader-text"><?php echo esc_html( $args['label'] ); ?></span>
-					<img src="<?php echo esc_url( sprintf( $args['url'], get_template_directory_uri(), get_stylesheet_directory_uri() ) ); ?>" alt="<?php echo esc_attr( $args['label'] ); ?>" />
+					<?php if ( ! empty( $args['label'] ) ) { ?>
+						<span class="screen-reader-text"><?php echo esc_html( $args['label'] ); ?></span>
+						<?php
+}
+?>
+					<img src="<?php echo esc_url( sprintf( $args['url'], get_template_directory_uri(), get_stylesheet_directory_uri() ) ); ?>" 
+											<?php
+											if ( ! empty( $args['label'] ) ) {
+												echo 'alt="' . esc_attr( $args['label'] ) . '"'; }
+?>
+	/>
 				</label>
 
 			<?php endforeach; ?>

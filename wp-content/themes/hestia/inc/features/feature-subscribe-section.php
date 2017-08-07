@@ -6,12 +6,6 @@
  * @since Hestia 1.0
  */
 
-// Load Blog subscribe
-$subscribe_path = trailingslashit( get_template_directory() ) . 'inc/customizer-subscribe-info/class-hestia-subscribe-info.php';
-if ( file_exists( $subscribe_path ) ) {
-	require_once( $subscribe_path );
-}
-
 /**
  * Hook controls for Subscribe section to Customizer.
  *
@@ -25,7 +19,6 @@ function hestia_subscribe_customize_register( $wp_customize ) {
 	$wp_customize->add_section(
 		'hestia_subscribe', array(
 			'title'    => esc_html__( 'Subscribe', 'hestia' ),
-			'panel'    => 'hestia_frontpage_sections',
 			'priority' => apply_filters( 'hestia_section_priority', 45, 'hestia_subscribe' ),
 		)
 	);
@@ -95,23 +88,45 @@ function hestia_subscribe_customize_register( $wp_customize ) {
 			'priority' => 15,
 		)
 	);
-
-	$wp_customize->add_setting(
-		'hestia_subscribe_info', array(
-			'sanitize_callback' => 'sanitize_text_field',
-		)
-	);
-
-	$wp_customize->add_control(
-		new Hestia_Subscribe_Info(
-			$wp_customize, 'hestia_subscribe_info', array(
-				'label'      => esc_html__( 'Instructions', 'hestia' ),
-				'section'    => 'hestia_subscribe',
-				'capability' => 'install_plugins',
-				'priority'   => 20,
+	if ( class_exists( 'Hestia_Subscribe_Info' ) ) {
+		$wp_customize->add_setting(
+			'hestia_subscribe_info', array(
+				'sanitize_callback' => 'sanitize_text_field',
 			)
-		)
-	);
+		);
+
+		$wp_customize->add_control(
+			new Hestia_Subscribe_Info(
+				$wp_customize, 'hestia_subscribe_info', array(
+					'label' => esc_html__( 'Instructions', 'hestia' ),
+					'section' => 'hestia_subscribe',
+					'capability' => 'install_plugins',
+					'priority' => 20,
+				)
+			)
+		);
+	}
+
+	$subscribe_widgets = $wp_customize->get_section( 'sidebar-widgets-subscribe-widgets' );
+	if ( ! empty( $subscribe_widgets ) ) {
+		$subscribe_widgets->panel = 'hestia_frontpage_sections';
+		$subscribe_widgets->priority = apply_filters( 'hestia_section_priority', 45,'sidebar-widgets-subscribe-widgets' );
+		$controls_to_move = array(
+			'hestia_subscribe_hide',
+			'hestia_subscribe_background',
+			'hestia_subscribe_title',
+			'hestia_subscribe_subtitle',
+			'hestia_subscribe_info',
+		);
+		foreach ( $controls_to_move as $control_id ) {
+			$control = $wp_customize->get_control( $control_id );
+			if ( ! empty( $control ) ) {
+				$control->section = 'sidebar-widgets-subscribe-widgets';
+				$control->priority = -1;
+			}
+		}
+	}
+
 }
 add_action( 'customize_register', 'hestia_subscribe_customize_register' );
 

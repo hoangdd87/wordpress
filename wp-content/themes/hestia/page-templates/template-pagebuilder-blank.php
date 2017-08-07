@@ -10,8 +10,6 @@
  */ ?>
 
 <?php
-
-
 hestia_no_content_get_header();
 
 do_action( 'hestia_page_builder_blank_before_content' );

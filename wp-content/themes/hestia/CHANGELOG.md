@@ -1,25 +1,84 @@
 
-### 1.1.39 - 21/07/2017
-**Changes:** 
-- Fixed responsive bugs with the main navigation menu
-- Fixed blurred background image bug on about section on iPhone
-- Fixed typography bug with H1 headings not changing size on posts and pages
-- Added support for Snapchat, Email, Tel, Deviantart and Vimeo in the footer social menu
-- Open in a new tab all external links used in Big title section / Slider section
-- Fixed some small layout bug on checkout page for shipping options
-- Compressed image for a smaller archive
-- Smaller size images for Shop and Portfolio sections
+ ### v1.1.42 - 2017-08-04 
+ **Changes:** 
+ * * Fix feature section controls.
+* * Fix testimonial section controls. 
+* * Fix JetPack compatibility issues in customizer.
+* * Fix subscribe section.
+* * Improved UX of customizer.
+ 
 
-### 1.1.38 - 14/07/2017
-**Changes:** 
-- New Typography options
-- Style Elementor plugin's widgets
-- Improved all responsive structure
-- Improved compatibility with WooCommerce Germanized plugin
-- Support for hiding Hestia frontpage sections in Elementor
-- Improved cart and checkout layout
-- Fixed issue with Polylang Language switcher HTML tags used as title attribute
-
+### 1.1.41 - 28/07/2017
+
+**Changes:** 
+
+- New Top Bar section
+
+- [Hestia PRO] Top Bar section colors and alignment options
+
+- New Multiple Header Layouts
+
+- [Hestia PRO] New Option for a Full width menu in header
+
+- [Hestia PRO] New Extra Options for Shop section ( category and order filters )
+
+- New Alternative Footer Style
+
+- [Hestia PRO] New Option for selecting the number of Footer Widgets Columns
+
+- Allow HTML tags in Features, Team and Testimonials sections
+
+- Changed responsive layout of sidebar
+
+- Fixed Google Webmaster Tools errors
+
+- Added hooks for header, footer and frontpage sections
+
+- Improved subtitles spacing on frontpage
+
+- Fixed some CSS issues in the main navigation menu
+
+
+### 1.1.39 - 21/07/2017
+
+**Changes:** 
+
+- Fixed responsive bugs with the main navigation menu
+
+- Fixed blurred background image bug on about section on iPhone
+
+- Fixed typography bug with H1 headings not changing size on posts and pages
+
+- Added support for Snapchat, Email, Tel, Deviantart and Vimeo in the footer social menu
+
+- Open in a new tab all external links used in Big title section / Slider section
+
+- Fixed some small layout bug on checkout page for shipping options
+
+- Compressed image for a smaller archive
+
+- Smaller size images for Shop and Portfolio sections
+
+
+### 1.1.38 - 14/07/2017
+
+**Changes:** 
+
+- New Typography options
+
+- Style Elementor plugin's widgets
+
+- Improved all responsive structure
+
+- Improved compatibility with WooCommerce Germanized plugin
+
+- Support for hiding Hestia frontpage sections in Elementor
+
+- Improved cart and checkout layout
+
+- Fixed issue with Polylang Language switcher HTML tags used as title attribute
+
+
 
 ### 1.1.37 - 30/06/2017
 
@@ -512,4 +571,3 @@
 **Changes:** 
 
 - First version
-

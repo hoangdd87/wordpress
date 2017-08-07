@@ -66,9 +66,7 @@ $class_to_add = hestia_get_content_classes( $hestia_blog_sidebar_layout, 'sideba
 					</div>
 					<?php the_tags( '<div class="entry-tags">' . esc_html__( 'Tags: ', 'hestia' ) . '<span class="entry-tag">', '</span><span class="entry-tag">', '</span></div>' ); ?>
 				</div>
-				<div class="col-md-6">
-					<?php do_action( 'hestia_blog_social_icons' ); ?>
-				</div>
+				<?php do_action( 'hestia_blog_social_icons' ); ?>
 			</div>
 			<hr>
 			<?php

@@ -8,15 +8,9 @@
  * @since Hestia 1.0
  */
 ?>
-<?php do_action( 'hestia_do_footer' ); ?>
-<div style="padding: 25px">
-	<?php echo do_shortcode( '[fbcomments count="off"]' ); ?>
-</div>
-</div>
-
-</div>
-
-<?php
-wp_footer(); ?>
+			<?php do_action( 'hestia_do_footer' ); ?>
+		</div>
+	</div>
+<?php wp_footer(); ?>
 </body>
 </html>

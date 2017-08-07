@@ -13,6 +13,7 @@ if ( ! function_exists( 'hestia_big_title' ) ) :
 	 * @since Hestia 1.0
 	 */
 	function hestia_big_title() {
+		hestia_before_big_title_section_trigger();
 	?>
 		<div id="carousel-hestia-generic" class="carousel slide" data-ride="carousel">
 			<div class="carousel slide" data-ride="carousel">
@@ -49,6 +50,7 @@ if ( ! function_exists( 'hestia_big_title' ) ) :
 									<div class="big-title-image"></div>
 									<?php
 								}
+								hestia_before_big_title_section_content_trigger();
 								?>
 								<div class="container">
 									<div class="row">
@@ -68,14 +70,16 @@ if ( ! function_exists( 'hestia_big_title' ) ) :
 										</div>
 									</div>
 								</div>
+								<?php hestia_after_big_title_section_content_trigger(); ?>
 							</div>
 						</div>
 						<?php
-					}
+					}// End if().
 					?>
 					</div>
 				</div>
 			</div>
+			<?php hestia_after_big_title_section_trigger(); ?>
 		</div>
 		<?php
 	}

@@ -7,48 +7,32 @@
 jQuery(document).ready( function() {
     'use strict';
 
-    updateArrays();
 
-    jQuery('#accordion-section-hestia_blog_authors .accordion-section-title').click( function() {
-        updateArrays();
-    });
+    wp.customize( 'hestia_team_content', function( value ) {
+        value.bind( function() {
+            var authors_values;
+            var result = '';
 
-    function updateArrays() {
-
-        var titles = [];
-        var ids = [];
-        var counter = 0;
-
-        jQuery('#customize-control-hestia_team_content .customizer-repeater-general-control-repeater-container').each( function () {
-
-            var title = jQuery(this).find('.customizer-repeater-title-control').val();
-
-            if( typeof (title) !== 'undefined' ) {
-                titles.push(title);
+            if( jQuery.isFunction( wp.customize._value.hestia_authors_on_blog ) ){
+                authors_values = wp.customize._value.hestia_authors_on_blog();
             }
+            jQuery('#customize-control-hestia_team_content .customizer-repeater-general-control-repeater-container').each( function () {
+                var title = jQuery(this).find('.customizer-repeater-title-control').val();
+                var id = jQuery(this).find('.social-repeater-box-id').val();
+                if( typeof (title) !== 'undefined' && title !== '' &&  typeof (id) !== 'undefined' && id !== '' ) {
+                    result += '<option value="' + id + '" ';
+                    if( authors_values && authors_values !== 'undefined' ) {
+                        if (authors_values.indexOf(id) !== -1) {
+                            result += 'selected';
+                        }
+                    }
+                    result += '>' + title + '</option>';
+                }
+            });
 
-            var id = jQuery(this).find('.social-repeater-box-id').val();
-
-            if ( typeof (id) !== 'undefined' ) {
-                ids.push(id);
-            }
-
-            counter ++;
-
+            jQuery('#customize-control-hestia_authors_on_blog .repeater-multiselect-team').html( result );
         });
-
-        jQuery('.repeater-multiselect-team').empty();
-
-        jQuery('<option value="0">Empty</option>').appendTo('.repeater-multiselect-team');
-
-        for (var i = 0; i < counter; i++) {
-
-            if (titles.length > 0 ) {
-                jQuery('<option value="'+ ids[i] +'">' + titles[i] + '</option>').appendTo('.repeater-multiselect-team');
-            }
-
-        }
-    }
+    });
 
     /* Move controls to Widgets sections. Used for sidebar placeholders */
     if ( typeof wp.customize.control( 'hestia_placeholder_sidebar_1' ) !== 'undefined' ) {

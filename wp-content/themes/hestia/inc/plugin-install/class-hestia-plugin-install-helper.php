@@ -79,7 +79,7 @@ class Hestia_Plugin_Install_Helper {
 
 					$button .= '<a data-slug="' . $slug . '" class="activate-now button button-primary" href="' . esc_url( $nonce ) . '" aria-label="Activate ' . $slug . '">' . __( 'Activate', 'hestia' ) . '</a>';
 					break;
-			}
+			}// End switch().
 			$button .= '</div>';
 		}// End if().
 

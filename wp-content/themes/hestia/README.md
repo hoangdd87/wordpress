@@ -48,16 +48,16 @@ assets/img/header.jpg - https://unsplash.com/photos/He8-FZl-o10
 assets/img/contact.jpg - https://unsplash.com/search/city-night-black?photo=uMH-d3WWJhM
 assets/img/about.jpg - https://www.pexels.com/photo/woman-phone-call-working-work-space-29594/
 
-ti-prevdem/img/1.jpg - https://unsplash.com/photos/JgOeRuGD_Y4  
-ti-prevdem/img/2.jpg - https://unsplash.com/photos/iPum7Ket2jo  
-ti-prevdem/img/3.jpg - https://unsplash.com/photos/ICE__bo2Vws  
-ti-prevdem/img/4.jpg - https://unsplash.com/photos/RFgO9B_OR4g  
-ti-prevdem/img/5.jpg - https://unsplash.com/photos/uwQlgl4NbSg  
-ti-prevdem/img/6.jpg - https://unsplash.com/?photo=z0nVqfrOqWA  
-ti-prevdem/img/7.jpg - https://unsplash.com/photos/ouPVsS0cFjk  
-ti-prevdem/img/8.jpg - https://unsplash.com/photos/5rKPeFcsSTY  
-ti-prevdem/img/9.jpg - http://mystock.photos/on-bicycle/  
-ti-prevdem/img/10.jpg - https://unsplash.com/?photo=Dg-T1LF-CwE  
+demo-preview-images/img/1.jpg - https://unsplash.com/photos/JgOeRuGD_Y4  
+demo-preview-images/img/2.jpg - https://unsplash.com/photos/iPum7Ket2jo  
+demo-preview-images/img/3.jpg - https://unsplash.com/photos/ICE__bo2Vws  
+demo-preview-images/img/4.jpg - https://unsplash.com/photos/RFgO9B_OR4g  
+demo-preview-images/img/5.jpg - https://unsplash.com/photos/uwQlgl4NbSg  
+demo-preview-images/img/6.jpg - https://unsplash.com/?photo=z0nVqfrOqWA  
+demo-preview-images/img/7.jpg - https://unsplash.com/photos/ouPVsS0cFjk  
+demo-preview-images/img/8.jpg - https://unsplash.com/photos/5rKPeFcsSTY  
+demo-preview-images/img/9.jpg - http://mystock.photos/on-bicycle/  
+demo-preview-images/img/10.jpg - https://unsplash.com/?photo=Dg-T1LF-CwE  
 
 
 

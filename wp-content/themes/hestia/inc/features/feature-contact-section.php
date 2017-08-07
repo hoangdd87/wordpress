@@ -6,12 +6,6 @@
  * @since Hestia 1.0
  */
 
-// Load Authors multiple select control.
-$contact_info_path = HESTIA_PHP_INCLUDE . 'customizer-contact-info/class-hestia-contact-info.php';
-if ( file_exists( $contact_info_path ) ) {
-	require_once( $contact_info_path );
-}
-
 // Register customizer page editor functions
 $page_editor_path = HESTIA_PHP_INCLUDE . 'customizer-page-editor/customizer-page-editor.php';
 if ( file_exists( $page_editor_path ) ) {
@@ -117,48 +111,52 @@ function hestia_contact_customize_register( $wp_customize ) {
 		)
 	);
 
-	$wp_customize->add_setting(
-		'hestia_contact_info', array(
-			'sanitize_callback' => 'sanitize_text_field',
-		)
-	);
-
-	$wp_customize->add_control(
-		new Hestia_Contact_Info(
-			$wp_customize, 'hestia_contact_info', array(
-				'label' => esc_html__( 'Instructions', 'hestia' ),
-				'section' => 'hestia_contact',
-				'capability' => 'install_plugins',
-				'priority' => 25,
+	if ( class_exists( 'Hestia_Contact_Info' ) ) {
+		$wp_customize->add_setting(
+			'hestia_contact_info', array(
+				'sanitize_callback' => 'sanitize_text_field',
 			)
-		)
-	);
+		);
 
-	$contact_content_default = hestia_contact_get_old_content( 'hestia_contact_content' );
-
-	if ( empty( $contact_content_default ) ) {
-		$contact_content_default  = hestia_contact_content_default();
+		$wp_customize->add_control(
+			new Hestia_Contact_Info(
+				$wp_customize, 'hestia_contact_info', array(
+					'label' => esc_html__( 'Instructions', 'hestia' ),
+					'section' => 'hestia_contact',
+					'capability' => 'install_plugins',
+					'priority' => 25,
+				)
+			)
+		);
 	}
 
-	$wp_customize->add_setting(
-		'hestia_contact_content_new', array(
-			'default'           => wp_kses_post( $contact_content_default ),
-			'sanitize_callback' => 'wp_kses_post',
-			'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
-			'default' => wp_kses_post( $contact_content_default ),
-		)
-	);
+	if ( class_exists( 'Hestia_Page_Editor' ) ) {
+		$contact_content_default = hestia_contact_get_old_content( 'hestia_contact_content' );
 
-	$wp_customize->add_control(
-		new Hestia_Page_Editor(
-			$wp_customize, 'hestia_contact_content_new', array(
-				'label'                      => esc_html__( 'Contact Content', 'hestia' ),
-				'section'                    => 'hestia_contact',
-				'priority'                   => 30,
-				'include_admin_print_footer' => true,
+		if ( empty( $contact_content_default ) ) {
+			$contact_content_default = hestia_contact_content_default();
+		}
+
+		$wp_customize->add_setting(
+			'hestia_contact_content_new', array(
+				'default'           => wp_kses_post( $contact_content_default ),
+				'sanitize_callback' => 'wp_kses_post',
+				'transport'         => $selective_refresh ? 'postMessage' : 'refresh',
+				'default' => wp_kses_post( $contact_content_default ),
 			)
-		)
-	);
+		);
+
+		$wp_customize->add_control(
+			new Hestia_Page_Editor(
+				$wp_customize, 'hestia_contact_content_new', array(
+					'label'                      => esc_html__( 'Contact Content', 'hestia' ),
+					'section'                    => 'hestia_contact',
+					'priority'                   => 30,
+					'include_admin_print_footer' => true,
+				)
+			)
+		);
+	}
 
 }
 

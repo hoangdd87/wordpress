@@ -6,12 +6,6 @@
  * @since Hestia 1.1.3
  */
 
-// Load Customizer page editor.
-$page_editor_path = HESTIA_PHP_INCLUDE . 'customizer-page-editor/class/class-hestia-page-editor.php';
-if ( file_exists( $page_editor_path ) ) {
-	require_once( $page_editor_path );
-}
-
 /**
  * Sync frontpage content with customizer control
  *

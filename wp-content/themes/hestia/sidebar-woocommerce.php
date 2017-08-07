@@ -18,9 +18,11 @@ if ( $hestia_sidebar_layout === 'sidebar-right' && $hestia_sidebar_width > 3 && 
 
 
 if ( is_active_sidebar( 'sidebar-woocommerce' ) ) { ?>
-	<aside id="secondary" class="col-md-3 shop-sidebar" role="complementary">
-		<?php dynamic_sidebar( 'sidebar-woocommerce' ); ?>
-	</aside><!-- .sidebar .widget-area -->
+	<div class="col-md-3 shop-sidebar-wrapper">
+		<aside id="secondary" class="shop-sidebar" role="complementary">
+			<?php dynamic_sidebar( 'sidebar-woocommerce' ); ?>
+		</aside><!-- .sidebar .widget-area -->
+	</div>
 	<?php
 } elseif ( is_customize_preview() ) {
 	hestia_sidebar_placeholder( $class_to_add, 'sidebar-woocommerce' );

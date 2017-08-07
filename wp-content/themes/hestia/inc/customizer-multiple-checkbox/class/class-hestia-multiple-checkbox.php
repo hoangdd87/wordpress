@@ -53,7 +53,12 @@ class Hestia_Multiple_Checkbox extends WP_Customize_Control {
 			<span class="description customize-control-description"><?php echo $this->description; ?></span>
 		<?php endif; ?>
 
-		<?php $multi_values = ! is_array( $this->value() ) ? explode( ',', $this->value() ) : $this->value(); ?>
+		<?php
+		$multi_values = $this->value();
+		if ( ! is_array( $multi_values ) ) {
+			$multi_values = explode( ',', $this->value() );
+		}
+		?>
 
 		<ul>
 			<?php foreach ( $this->choices as $value => $label ) : ?>

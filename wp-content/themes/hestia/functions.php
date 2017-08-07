@@ -24,17 +24,30 @@
  * @since Hestia 1.0
  */
 
-define( 'HESTIA_VERSION', '1.1.39' );
+define( 'HESTIA_VERSION', '1.1.42' );
 
 define( 'HESTIA_VENDOR_VERSION', '1.0.1' );
 
 define( 'HESTIA_PHP_INCLUDE', trailingslashit( get_template_directory() ) . 'inc/' );
 
+$vendor_file = trailingslashit( get_template_directory() ) . 'vendor/autoload.php';
+if ( is_readable( $vendor_file ) ) {
+	require_once $vendor_file;
+}
+add_filter(
+	'themeisle_sdk_products', function ( $products ) {
+		$products[] = get_template_directory() . '/style.css';
+
+		return $products;
+	}
+);
+
 require_once( HESTIA_PHP_INCLUDE . 'template-tags.php' );
+require_once( HESTIA_PHP_INCLUDE . 'hooks.php' );
 require_once( HESTIA_PHP_INCLUDE . 'wp-bootstrap-navwalker/wp_bootstrap_navwalker.php' );
 require_once( HESTIA_PHP_INCLUDE . 'customizer.php' );
 require_once( HESTIA_PHP_INCLUDE . 'page-builder-extras.php' );
-require_once( get_template_directory() . '/ti-prevdem/init-prevdem.php' );
+require_once( get_template_directory() . '/demo-preview-images/init-prevdem.php' );
 if ( class_exists( 'woocommerce' ) ) {
 	require_once( HESTIA_PHP_INCLUDE . 'woocommerce/functions.php' );
 	require_once( HESTIA_PHP_INCLUDE . 'woocommerce/hooks.php' );
@@ -115,6 +128,7 @@ if ( ! function_exists( 'hestia_setup_theme' ) ) {
 			array(
 				'primary' => esc_html__( 'Primary Menu', 'hestia' ),
 				'footer'  => esc_html__( 'Footer Menu', 'hestia' ),
+				'top-bar-menu' => esc_html__( 'Top Bar Menu', 'hestia' ),
 			)
 		);
 
@@ -166,85 +180,39 @@ if ( ! function_exists( 'hestia_setup_theme' ) ) {
  * Register widgets for the theme.
  *
  * @since Hestia 1.0
+ * @modified 1.1.40
  */
 function hestia_widgets_init() {
 
-	register_sidebar(
-		array(
-			'name'        => esc_html__( 'Sidebar', 'hestia' ),
-			'id'            => 'sidebar-1',
+	$sidebars_array = array(
+		'sidebar-1' => esc_html__( 'Sidebar', 'hestia' ),
+		'subscribe-widgets' => esc_html__( 'Subscribe', 'hestia' ),
+		'blog-subscribe-widgets' => esc_html__( 'Blog Subscribe Section', 'hestia' ),
+		'footer-one-widgets' => esc_html__( 'Footer One', 'hestia' ),
+		'footer-two-widgets' => esc_html__( 'Footer Two', 'hestia' ),
+		'footer-three-widgets' => esc_html__( 'Footer Three', 'hestia' ),
+		'sidebar-woocommerce' => esc_html__( 'WooCommerce Sidebar', 'hestia' ),
+		'sidebar-top-bar' => esc_html__( 'Top Bar', 'hestia' ),
+		'header-sidebar' => esc_html__( 'Navigation', 'hestia' ),
+	);
+
+	foreach ( $sidebars_array as $sidebar_id => $sidebar_name ) {
+		$sidebar_settings = array(
+			'name'        => $sidebar_name,
+			'id'            => $sidebar_id,
 			'before_widget' => '<div id="%1$s" class="widget %2$s">',
 			'after_widget'  => '</div>',
 			'before_title'  => '<h5>',
 			'after_title'   => '</h5>',
-		)
-	);
+		);
+		if ( $sidebar_id === 'subscribe-widgets' || $sidebar_id === 'blog-subscribe-widgets' ) {
+			$sidebar_settings['before_widget'] = '';
+			$sidebar_settings['after_widget'] = '';
+		}
 
-	register_sidebar(
-		array(
-			'name'        => esc_html__( 'Subscribe Section', 'hestia' ),
-			'id'            => 'subscribe-widgets',
-			'before_widget' => '',
-			'after_widget'  => '',
-			'before_title'  => '<h5>',
-			'after_title'   => '</h5>',
-		)
-	);
+		register_sidebar( $sidebar_settings );
 
-	register_sidebar(
-		array(
-			'name'        => esc_html__( 'Blog Subscribe Section', 'hestia' ),
-			'id'            => 'blog-subscribe-widgets',
-			'before_widget' => '',
-			'after_widget'  => '',
-			'before_title'  => '<h5>',
-			'after_title'   => '</h5>',
-		)
-	);
-
-	register_sidebar(
-		array(
-			'name'        => esc_html__( 'Footer One', 'hestia' ),
-			'id'            => 'footer-one-widgets',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h5>',
-			'after_title'   => '</h5>',
-		)
-	);
-
-	register_sidebar(
-		array(
-			'name'        => esc_html__( 'Footer Two', 'hestia' ),
-			'id'            => 'footer-two-widgets',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h5>',
-			'after_title'   => '</h5>',
-		)
-	);
-
-	register_sidebar(
-		array(
-			'name'        => esc_html__( 'Footer Three', 'hestia' ),
-			'id'            => 'footer-three-widgets',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h5>',
-			'after_title'   => '</h5>',
-		)
-	);
-
-	register_sidebar(
-		array(
-			'name'          => esc_html__( 'WooCommerce Sidebar', 'hestia' ),
-			'id'            => 'sidebar-woocommerce',
-			'before_widget' => '<div id="%1$s" class="widget %2$s">',
-			'after_widget'  => '</div>',
-			'before_title'  => '<h5>',
-			'after_title'   => '</h5>',
-		)
-	);
+	}
 }
 
 add_action( 'widgets_init', 'hestia_widgets_init' );
@@ -427,6 +395,7 @@ function hestia_filter_features( $array ) {
 			'features/feature-advanced-color-settings',
 			'features/feature-section-ordering',
 			'features/feature-theme-info-section',
+			'features/feature-header-settings',
 
 			'sections/feature-blog-authors-section',
 			'sections/feature-blog-subscribe-section',
@@ -523,13 +492,15 @@ function hestia_inline_style() {
 
 	if ( ! empty( $hestia_features_content ) ) {
 		$hestia_features_content = json_decode( $hestia_features_content );
-		foreach ( $hestia_features_content as $key => $features_item ) {
-			$box_nb = $key + 1;
-			if ( ! empty( $features_item->color ) ) {
-				$color = ! empty( $features_item->color ) ? apply_filters( 'hestia_translate_single_string', $features_item->color, 'Features section' ) : '';
-				$custom_css .= '.feature-box:nth-child(' . esc_attr( $box_nb ) . ') .icon {
+		if ( ! empty( $hestia_features_content ) ) {
+			foreach ( $hestia_features_content as $key => $features_item ) {
+				$box_nb = $key + 1;
+				if ( ! empty( $features_item->color ) ) {
+					$color = ! empty( $features_item->color ) ? apply_filters( 'hestia_translate_single_string', $features_item->color, 'Features section' ) : '';
+					$custom_css .= '.feature-box:nth-child(' . esc_attr( $box_nb ) . ') .icon {
                             color: ' . esc_attr( $color ) . ';
 				}';
+				}
 			}
 		}
 	}
@@ -739,4 +710,3 @@ function hestia_is_external_url( $url ) {
 		}
 	}
 }
-

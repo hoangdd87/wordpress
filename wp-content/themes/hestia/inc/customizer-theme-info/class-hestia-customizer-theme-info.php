@@ -70,16 +70,6 @@ final class Hestia_Customizer_Theme_Info {
 	 */
 	public function sections( $manager ) {
 
-		// Load custom sections.
-		$theme_info_main_path = trailingslashit( get_template_directory() ) . 'inc/customizer-theme-info/class-hestia-customizer-theme-info-main.php';
-		if ( file_exists( $theme_info_main_path ) ) {
-			require_once( $theme_info_main_path );
-		}
-		$theme_info_section_path = trailingslashit( get_template_directory() ) . 'inc/customizer-theme-info/class-hestia-customizer-theme-info-section.php';
-		if ( file_exists( $theme_info_section_path ) ) {
-			require_once( $theme_info_section_path );
-		}
-
 		if ( class_exists( 'Hestia_Customizer_Theme_Info_Main' ) ) {
 			// Register custom section types.
 			$manager->register_section_type( 'Hestia_Customizer_Theme_Info_Main' );

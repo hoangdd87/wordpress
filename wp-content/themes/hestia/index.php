@@ -48,6 +48,14 @@ get_header();
 		<div class="container">
 			<div class="row">
 				<?php
+				if ( is_active_sidebar( 'sidebar-1' ) ) {
+				?>
+					<div class="row-sidebar-toggle">
+						<span class="hestia-sidebar-open btn btn-rose"><i class="fa fa-list" aria-hidden="true"></i></span>
+					</div>
+				<?php
+				}
+
 				if ( $hestia_blog_sidebar_layout === 'sidebar-left' ) {
 					get_sidebar();
 				}

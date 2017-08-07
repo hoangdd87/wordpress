@@ -105,11 +105,18 @@ h6 {
 	word-wrap: break-word;
 }
 
-h2.title,
-h2.hestia-title,
 h1.title,
-h1.hestia-title {
+h1.hestia-title,
+.pricing h2.title,
+.pricing h2.hestia-title,
+.contactus h2.title,
+.contactus h2.hestia-title {
 	margin-bottom: 30px;
+}
+
+h2.title,
+h2.hestia-title {
+	margin-bottom: 10px;
 }
 
 .carousel h1.hestia-title,

@@ -20,6 +20,14 @@
 </head>
 
 <body <?php body_class(); ?>>
-	<div class="wrapper">
+	<div 
+	<?php
+	if ( ! is_single() ) {
+		echo 'class="wrapper"';
+	} else {
+		post_class( 'wrapper' );
+	}
+?>
+>
 		<header class="header">
 			<?php do_action( 'hestia_do_header' ); ?>

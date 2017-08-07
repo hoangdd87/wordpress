@@ -6,11 +6,6 @@
  * @since Hestia 1.0
  */
 
-$radio_image_control_path = HESTIA_PHP_INCLUDE . 'customizer-radio-image/class/class-hestia-customize-control-radio-image.php';
-if ( file_exists( $radio_image_control_path ) ) {
-	require_once( $radio_image_control_path );
-}
-
 /**
  * Hook controls for General section to Customizer.
  *
@@ -112,8 +107,24 @@ function hestia_general_customize_register( $wp_customize ) {
 			)
 		);
 	}// End if().
-}
 
+	$wp_customize->add_setting(
+		'hestia_enable_sharing_icons', array(
+			'default' => true,
+			'sanitize_callback' => 'hestia_sanitize_checkbox',
+		)
+	);
+
+	$wp_customize->add_control(
+		'hestia_enable_sharing_icons',array(
+			'label' => esc_html__( 'Enable Sharing Icons','hestia' ),
+			'section' => 'hestia_general',
+			'priority' => 30,
+			'type' => 'checkbox',
+		)
+	);
+
+}
 add_action( 'customize_register', 'hestia_general_customize_register' );
 
 /**

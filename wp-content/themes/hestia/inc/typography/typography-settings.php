@@ -15,23 +15,6 @@ if ( file_exists( $font_selector_functions ) ) {
 }
 
 /**
- * Filter the array of customizer controls paths.
- *
- * @param array $array Customizer paths.
- *
- * @since 1.1.38
- * @return array
- */
-function hestia_typography_controls( $array ) {
-	$range_control_path = HESTIA_PHP_INCLUDE . 'customizer-range-value/class/class-hestia-customizer-range-value-control.php';
-	$font_selector = HESTIA_PHP_INCLUDE . 'customizer-font-selector/class/class-hestia-font-selector.php';
-	$multiple_checkbox = HESTIA_PHP_INCLUDE . 'customizer-multiple-checkbox/class/class-hestia-multiple-checkbox.php';
-	return array_merge( $array, array( $range_control_path, $font_selector, $multiple_checkbox ) );
-}
-add_filter( 'hestia_controls_path', 'hestia_typography_controls' );
-
-
-/**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
  *
  * @since 1.1.38
@@ -126,11 +109,9 @@ function hestia_typography_settings( $wp_customize ) {
 				)
 			)
 		);
-	}
+	}// End if().
 
 	if ( class_exists( 'Hestia_Customizer_Range_Value_Control' ) ) {
-
-		$wp_customize->register_control_type( 'Hestia_Customizer_Range_Value_Control' );
 
 		$wp_customize->add_setting(
 			'hestia_body_font_size', array(
@@ -254,8 +235,10 @@ function hestia_get_inline_style( $control_name, $function_name, $custom_css ) {
 	$control_value = get_theme_mod( $control_name );
 	if ( hestia_is_json( $control_value ) ) {
 		$control_value = json_decode( $control_value, true );
-		foreach ( $control_value as $key => $value ) {
-			$custom_css .= call_user_func( $function_name, $value, $key );
+		if ( ! empty( $control_value ) ) {
+			foreach ( $control_value as $key => $value ) {
+				$custom_css .= call_user_func( $function_name, $value, $key );
+			}
 		}
 	} else {
 		$custom_css .= call_user_func( $function_name, $control_value );

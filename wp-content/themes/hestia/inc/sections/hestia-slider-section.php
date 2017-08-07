@@ -17,6 +17,7 @@ if ( ! function_exists( 'hestia_slider' ) ) :
 		?>
 		<?php
 		if ( ! $is_callback ) {
+			hestia_before_big_title_section_trigger();
 		?>
 			<div id="carousel-hestia-generic" class="carousel slide" data-ride="carousel">
 			<?php
@@ -30,55 +31,59 @@ if ( ! function_exists( 'hestia_slider' ) ) :
 				$i = 0;
 				if ( ! empty( $hestia_slider_content ) ) :
 					$hestia_slider_content = json_decode( $hestia_slider_content );
-					foreach ( $hestia_slider_content as $slider_item ) :
-						$title = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
-						$subtitle = ! empty( $slider_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $slider_item->subtitle, 'Slider section' ) : '';
-						$button = ! empty( $slider_item->text ) ? apply_filters( 'hestia_translate_single_string', $slider_item->text, 'Slider section' ) : '';
-						$link = ! empty( $slider_item->link ) ? apply_filters( 'hestia_translate_single_string', $slider_item->link, 'Slider section' ) : '';
-						$image = ! empty( $slider_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $slider_item->image_url, 'Slider section' ) : '';
-						?>
-						<div class="item 
-						<?php
-						$i ++;
-						if ( $i == 1 ) {
-							echo 'active';
-						}
-						?>
-						">
-							<?php if ( ! empty( $image ) ) : ?>
-							<div class="page-header header-filter"
-								 style="background-image: url('<?php echo esc_url( $image ); ?>');">
-								<?php else : ?>
-								<div class="page-header header-filter">
-									<?php endif; ?>
-									<div class="container">
-										<div class="row">
-											<div class="col-md-8 col-md-offset-2 text-center">
-												<?php
-												if ( ! empty( $title ) ) :
-													$title = html_entity_decode( $title );
-													?>
-													<h1 class="hestia-title"><?php echo wp_kses_post( $title ); ?></h1>
-												<?php endif; ?>
-												<?php
-												if ( ! empty( $subtitle ) ) :
-													$subtitle = html_entity_decode( $subtitle );
-													?>
-													<span class="sub-title"><?php echo wp_kses_post( $subtitle ); ?></span>
-												<?php endif; ?>
-												<?php if ( ! empty( $link ) || ! empty( $button ) ) : ?>
-													<div class="buttons">
-														<a href="<?php echo esc_url( $link ); ?>"
-														   title="<?php echo esc_html( $button ); ?>" class="btn btn-primary btn-lg" <?php hestia_is_external_url( $link ); ?>><?php echo esc_html( $button ); ?></a>
-													</div>
-												<?php endif; ?>
+					if ( ! empty( $hestia_slider_content ) ) {
+						foreach ( $hestia_slider_content as $slider_item ) :
+							$title = ! empty( $slider_item->title ) ? apply_filters( 'hestia_translate_single_string', $slider_item->title, 'Slider section' ) : '';
+							$subtitle = ! empty( $slider_item->subtitle ) ? apply_filters( 'hestia_translate_single_string', $slider_item->subtitle, 'Slider section' ) : '';
+							$button = ! empty( $slider_item->text ) ? apply_filters( 'hestia_translate_single_string', $slider_item->text, 'Slider section' ) : '';
+							$link = ! empty( $slider_item->link ) ? apply_filters( 'hestia_translate_single_string', $slider_item->link, 'Slider section' ) : '';
+							$image = ! empty( $slider_item->image_url ) ? apply_filters( 'hestia_translate_single_string', $slider_item->image_url, 'Slider section' ) : '';
+							?>
+							<div class="item
+							<?php
+							$i ++;
+							if ( $i == 1 ) {
+								echo 'active';
+							}
+							?>
+							">
+								<?php if ( ! empty( $image ) ) : ?>
+								<div class="page-header header-filter"
+									 style="background-image: url('<?php echo esc_url( $image ); ?>');">
+									<?php else : ?>
+									<div class="page-header header-filter">
+										<?php endif; ?>
+										<?php hestia_before_big_title_section_content_trigger(); ?>
+										<div class="container">
+											<div class="row">
+												<div class="col-md-8 col-md-offset-2 text-center">
+													<?php
+													if ( ! empty( $title ) ) :
+														$title = html_entity_decode( $title );
+														?>
+														<h1 class="hestia-title"><?php echo wp_kses_post( $title ); ?></h1>
+													<?php endif; ?>
+													<?php
+													if ( ! empty( $subtitle ) ) :
+														$subtitle = html_entity_decode( $subtitle );
+														?>
+														<span class="sub-title"><?php echo wp_kses_post( $subtitle ); ?></span>
+													<?php endif; ?>
+													<?php if ( ! empty( $link ) || ! empty( $button ) ) : ?>
+														<div class="buttons">
+															<a href="<?php echo esc_url( $link ); ?>"
+															   title="<?php echo esc_html( $button ); ?>" class="btn btn-primary btn-lg" <?php hestia_is_external_url( $link ); ?>><?php echo esc_html( $button ); ?></a>
+														</div>
+													<?php endif; ?>
+												</div>
 											</div>
 										</div>
+										<?php hestia_after_big_title_section_content_trigger(); ?>
 									</div>
 								</div>
-							</div>
-							<?php
-					endforeach;
+								<?php
+						endforeach;
+					}// End if().
 				endif;
 				?>
 				</div>
@@ -94,6 +99,7 @@ if ( ! function_exists( 'hestia_slider' ) ) :
 		?>
 			</div>
 			<?php
+			hestia_after_big_title_section_trigger();
 		}
 	}
 

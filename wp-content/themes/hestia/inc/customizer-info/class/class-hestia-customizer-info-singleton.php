@@ -63,44 +63,36 @@ final class Hestia_Customizer_Info_Singleton {
 	 * Sets up the customizer sections.
 	 *
 	 * @since  1.0.0
+	 * @modified 1.1.40
 	 * @access public
-	 *
 	 * @param  object $manager WordPress customizer object.
-	 *
 	 * @return void
 	 */
 	public function sections( $manager ) {
 
-		// Load custom sections.
-		$info_path = trailingslashit( get_template_directory() ) . 'inc/customizer-info/class/class-hestia-customizer-info.php';
-		if ( file_exists( $info_path ) ) {
-			require_once( $info_path );
+		if ( ! class_exists( 'Hestia_Customizer_Info' ) ) {
+			return;
 		}
 
-		if ( class_exists( 'Hestia_Customizer_Info' ) ) {
-			// Register custom section types.
-			$manager->register_section_type( 'Hestia_Customizer_Info' );
-
-			if ( ! class_exists( 'woocommerce' ) ) {
-				$manager->add_section(
-					new Hestia_Customizer_Info(
-						$manager, 'hestia_info_woocommerce', array(
-							'section_text' =>
-							sprintf(
-								/* translators: %1$s is Plugin Name */
-								esc_html__( 'To have access to a shop section please install and configure %1$s.', 'hestia' ),
-								esc_html__( 'WooCommerce plugin', 'hestia' )
-							),
-							'slug'         => 'woocommerce',
-							'panel'        => 'hestia_frontpage_sections',
-							'priority'     => 451,
-							'capability'   => 'install_plugins',
-							'hide_notice'  => (bool) get_option( 'dismissed-hestia_info_woocommerce', false ),
-							'button_screenreader' => '',
-						)
+		if ( ! class_exists( 'woocommerce' ) ) {
+			$manager->add_section(
+				new Hestia_Customizer_Info(
+					$manager, 'hestia_info_woocommerce', array(
+						'section_text' =>
+						sprintf(
+							/* translators: %1$s is Plugin Name */
+							esc_html__( 'To have access to a shop section please install and configure %1$s.', 'hestia' ),
+							esc_html__( 'WooCommerce plugin', 'hestia' )
+						),
+						'slug'         => 'woocommerce',
+						'panel'        => 'hestia_frontpage_sections',
+						'priority'     => 451,
+						'capability'   => 'install_plugins',
+						'hide_notice'  => (bool) get_option( 'dismissed-hestia_info_woocommerce', false ),
+						'button_screenreader' => '',
 					)
-				);
-			}
+				)
+			);
 		}
 	}
 

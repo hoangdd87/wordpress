@@ -132,6 +132,14 @@ function hestia_woocommerce_before_main_content() {
 				<article id="post-<?php the_ID(); ?>" class="section section-text">
 					<div class="row">
 						<?php
+						if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) ) {
+						?>
+						<div class="row-sidebar-toggle">
+							<span class="hestia-sidebar-open btn btn-rose"><i class="fa fa-list" aria-hidden="true"></i></span>
+						</div>
+						<?php
+						}
+
 						if ( $hestia_page_sidebar_layout === 'sidebar-left' ) {
 							hestia_shop_sidebar();
 						}
@@ -290,7 +298,10 @@ function hestia_shop_sidebar() {
 
 	if ( is_active_sidebar( 'sidebar-woocommerce' ) && ! is_singular( 'product' ) ) {
 	?>
-		<div class="col-md-3 shop-sidebar-wrapper">
+		<div class="col-md-3 shop-sidebar-wrapper sidebar-toggle-container">
+			<div class="row-sidebar-toggle">
+				<span class="hestia-sidebar-close btn btn-rose"><i class="fa fa-times" aria-hidden="true"></i></span>
+			</div>
 			<aside id="secondary" class="shop-sidebar card card-raised <?php echo esc_attr( $class_to_add ); ?>" role="complementary">
 				<?php dynamic_sidebar( 'sidebar-woocommerce' ); ?>
 			</aside><!-- .sidebar .widget-area -->

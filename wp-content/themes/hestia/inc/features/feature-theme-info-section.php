@@ -6,11 +6,6 @@
  * @since Hestia 1.0
  */
 
-$upsell_theme_info_path = trailingslashit( get_template_directory() ) . 'inc/customizer-theme-info/class-hestia-control-upsell-theme-info.php';
-if ( file_exists( $upsell_theme_info_path ) ) {
-	require_once( $upsell_theme_info_path );
-}
-
 $theme_info_path = trailingslashit( get_template_directory() ) . 'inc/customizer-theme-info/class-hestia-customizer-theme-info.php';
 if ( file_exists( $theme_info_path ) ) {
 	require_once( $theme_info_path );

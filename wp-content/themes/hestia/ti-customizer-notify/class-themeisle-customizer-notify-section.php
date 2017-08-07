@@ -119,7 +119,7 @@ class Themeisle_Customizer_Notify_Section extends WP_Customize_Section {
 					), network_admin_url( 'plugins.php' )
 				);
 				break;
-		}
+		}// End switch().
 	}
 
 	/**

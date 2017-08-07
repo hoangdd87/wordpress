@@ -33,6 +33,7 @@ if ( ! function_exists( 'hestia_about' ) ) :
 				$hestia_frontpage_featured = get_the_post_thumbnail_url();
 			}
 		}
+		hestia_before_about_section_trigger();
 		?>
 		<section class="about hestia-about 
 		<?php
@@ -69,7 +70,7 @@ if ( ! empty( $hestia_frontpage_featured ) ) {
 			</div>
 		</section>
 		<?php
-
+		hestia_after_about_section_trigger();
 	}
 
 endif;

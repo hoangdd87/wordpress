@@ -33,6 +33,12 @@ function my_theme_archive_title( $title ) {
 
 add_filter( 'get_the_archive_title', 'my_theme_archive_title' );
 
+add_filter( 'ninja_forms_i18n_front_end', 'my_custom_ninja_forms_i18n_front_end' );
+function my_custom_ninja_forms_i18n_front_end( $strings ) {
+	$strings['fieldsMarkedRequired'] = '(Dấu * là thông tin bắt buộc phải điền)';
+	return $strings;
+}
+
 
 
 

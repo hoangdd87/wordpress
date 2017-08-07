@@ -21,9 +21,14 @@ if ( $hestia_sidebar_layout === 'sidebar-right' && $hestia_sidebar_width > 3 && 
 
 
 if ( is_active_sidebar( 'sidebar-1' ) ) { ?>
-	<aside id="secondary" class="col-md-3 blog-sidebar <?php echo esc_attr( $class_to_add ); ?>" role="complementary">
-		<?php dynamic_sidebar( 'sidebar-1' ); ?>
-	</aside><!-- .sidebar .widget-area -->
+	<div class="col-md-3 blog-sidebar-wrapper <?php echo esc_attr( $class_to_add ); ?> sidebar-toggle-container">
+		<div class="row-sidebar-toggle">
+			<span class="hestia-sidebar-close btn btn-rose"><i class="fa fa-times" aria-hidden="true"></i></span>
+		</div>
+		<aside id="secondary" class="blog-sidebar" role="complementary">
+			<?php dynamic_sidebar( 'sidebar-1' ); ?>
+		</aside><!-- .sidebar .widget-area -->
+	</div>
 	<?php
 } elseif ( is_customize_preview() ) {
 	hestia_sidebar_placeholder( $class_to_add, 'sidebar-1' );

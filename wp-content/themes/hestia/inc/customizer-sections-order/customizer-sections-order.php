@@ -60,8 +60,11 @@ function hestia_get_section_priority( $value, $key = '' ) {
 		$json = json_decode( $orders );
 		if ( isset( $json->$key ) ) {
 			return $json->$key;
+		} elseif ( $key === 'sidebar-widgets-subscribe-widgets' && isset( $json->hestia_subscribe ) ) {
+			return $json->hestia_subscribe;
 		}
 	}
+
 	return $value;
 }
 add_filter( 'hestia_section_priority', 'hestia_get_section_priority', 10, 2 );
@@ -76,6 +79,9 @@ function hestia_refresh_positions() {
 	if ( ! empty( $section_order_decoded ) ) {
 		remove_all_actions( 'hestia_sections' );
 		foreach ( $section_order_decoded as $k => $priority ) {
+			if ( $k === 'sidebar-widgets-subscribe-widgets' ) {
+				add_action( 'hestia_sections', 'hestia_subscribe', $priority );
+			}
 			if ( function_exists( $k ) ) {
 				add_action( 'hestia_sections', $k, $priority );
 			}

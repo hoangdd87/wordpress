@@ -32,14 +32,14 @@
 				<?php
 				the_title(
 					sprintf(
-						'<h2 class="card-title"><a href="%s" title="%s" rel="bookmark">', esc_url( get_permalink() ), the_title_attribute(
+						'<h2 class="card-title entry-title"><a href="%s" title="%s" rel="bookmark">', esc_url( get_permalink() ), the_title_attribute(
 							array(
 								'echo' => false,
 							)
 						)
 					), '</a></h2>'
 				);
-				?>
+					?>
 				<div class="card-description">
 					<p>
 						<?php
@@ -57,9 +57,9 @@
 					printf(
 						/* translators: %1$s is Author name wrapped, %2$s is Time */
 						esc_html__( 'By %1$s, %2$s', 'hestia' ),
+						/* translators: %1$s is Author name, %2$s is author link */
 						sprintf(
-							/* translators: %1$s is Author name, %2$s is author link */
-							'<a href="%2$s" title="%1$s"><b>%1$s</b></a>',
+							'<a href="%2$s" title="%1$s" class="vcard author"><strong class="fn">%1$s</strong></a>',
 							esc_html( get_the_author() ),
 							esc_url( get_author_posts_url( get_the_author_meta( 'ID' ) ) )
 						),
@@ -76,6 +76,7 @@
 						)
 					);
 					?>
+					<time class="date updated published" datetime="<?php echo esc_html( get_the_date( DATE_W3C ) ); ?>"><?php echo esc_html( get_the_time( get_option( 'date_format' ) ) ); ?></time>
 				</div>
 			</div>
 		</div>

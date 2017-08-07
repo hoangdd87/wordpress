@@ -6,6 +6,28 @@
  * @since Hestia 1.0
  */
 
+
+/**
+ * Autoload customize controls.
+ *
+ * @since 1.1.40
+ */
+function hestia_autoload_customize_controls() {
+
+	require_once( get_template_directory() . '/assets/autoloader/class-hestia-autoloader.php' );
+
+	Hestia_Autoloader::set_path( HESTIA_PHP_INCLUDE );
+	Hestia_Autoloader::define_namespaces( array( 'Hestia' ) );
+	/**
+	 * Invocation of the Autoloader::loader method.
+	 *
+	 * @since   1.0.0
+	 */
+	spl_autoload_register( 'Hestia_Autoloader::loader' );
+}
+add_action( 'customize_register', 'hestia_autoload_customize_controls', 0 );
+
+
 /**
  * Load customizer paths.
  *
@@ -52,7 +74,7 @@ add_action( 'customize_preview_init', 'hestia_customizer_live_preview' );
  */
 function hestia_customizer_controls() {
 	wp_enqueue_style( 'hestia-customizer-style', get_template_directory_uri() . '/assets/css/customizer-style.css', array(), HESTIA_VERSION );
-	wp_enqueue_script( 'hestia_customize_controls', get_template_directory_uri() . '/assets/js/customizer-controls.js', array( 'jquery', 'customize-controls' ), HESTIA_VERSION, true );
+	wp_enqueue_script( 'hestia_customize_controls', get_template_directory_uri() . '/assets/js/customizer-controls.js', array( 'jquery', 'customize-preview' ), HESTIA_VERSION, true );
 
 }
 add_action( 'customize_controls_enqueue_scripts', 'hestia_customizer_controls' );
@@ -100,6 +122,10 @@ if ( file_exists( $plugin_installer ) ) {
 	require_once( $plugin_installer );
 }
 
+/**
+ * Functions executed in customizer.
+ * =================================
+ */
 /**
  * Register panels for Customizer.
  *
@@ -196,9 +222,32 @@ function hestia_customize_register( $wp_customize ) {
 	}
 
 }
-
 add_action( 'customize_register', 'hestia_customize_register' );
 
+
+/**
+ * Register JS control types.
+ *
+ * @since  1.1.40
+ * @access public
+ * @return void
+ */
+function hestia_register_control_types( $wp_customize ) {
+
+	// Register JS sections type
+	$wp_customize->register_section_type( 'Hestia_Customizer_Info' );
+
+	// Register JS control types.
+	$wp_customize->register_control_type( 'Hestia_Select_Multiple' );
+	$wp_customize->register_control_type( 'Hestia_Customizer_Range_Value_Control' );
+}
+add_action( 'customize_register', 'hestia_register_control_types', 0 );
+
+
+/**
+ * Utils functions needed for controls.
+ * ====================================
+ */
 /**
  * Custom logo callback function.
  *
@@ -219,11 +268,47 @@ function hestia_custom_logo_callback() {
 }
 
 /**
+ * Callback for WooCommerce customizer controls.
+ *
+ * @return bool
+ */
+function hestia_woocommerce_check() {
+	if ( class_exists( 'woocommerce' ) ) {
+		return true;
+	}
+	return false;
+}
+
+/**
+ * Sanitize functions for custom controls
+ * ======================================
+ */
+/**
+ * Function to sanitize controls that returns arrays
+ *
+ * @since 1.1.40
+ * @param mixed $input Control output.
+ */
+function hestia_sanitize_array( $input ) {
+	$output = $input;
+
+	if ( ! is_array( $input ) ) {
+		$output = explode( ',', $input );
+	}
+
+	if ( ! empty( $output ) ) {
+		return array_map( 'sanitize_text_field', $output );
+	}
+
+	return array();
+}
+
+/**
  * Function to sanitize alpha color.
  *
  * @param string $input Hex or RGBA color.
  *
- * @return string|void
+ * @return string
  */
 function hestia_sanitize_colors( $input ) {
 	// Is this an rgba color or a hex?
@@ -259,12 +344,40 @@ function hestia_sanitize_rgba( $value ) {
 }
 
 /**
- * Callback for WooCommerce customizer controls.
+ * Sanitize repeater control.
  *
- * @return bool
+ * @param object $input Control output.
+ *
+ * @return object
  */
-function hestia_woocommerce_check() {
-	if ( class_exists( 'woocommerce' ) ) {
-		return true;
+function hestia_repeater_sanitize( $input ) {
+	$input_decoded = json_decode( $input,true );
+
+	if ( ! empty( $input_decoded ) ) {
+		foreach ( $input_decoded as $boxk => $box ) {
+			foreach ( $box as $key => $value ) {
+
+				$input_decoded[ $boxk ][ $key ] = wp_kses_post( force_balance_tags( $value ) );
+
+			}
+		}
+		return json_encode( $input_decoded );
 	}
+	return $input;
+}
+
+/**
+ * Fix Jetpack causing tinymce editor issues.
+ */
+function hestia_jetpack_tinymce_fix() {
+	remove_action( 'media_buttons', 'grunion_media_button', 999 );
+	remove_action( 'admin_enqueue_scripts', 'grunion_enable_spam_recheck' );
+
+	remove_action( 'admin_notices', array( 'Grunion_Editor_View', 'handle_editor_view_js' ) );
+	remove_filter( 'mce_external_plugins', array( 'Grunion_Editor_View', 'mce_external_plugins' ) );
+	remove_filter( 'mce_buttons', array( 'Grunion_Editor_View', 'mce_buttons' ) );
+	remove_action( 'admin_head', array( 'Grunion_Editor_View', 'admin_head' ) );
+}
+if ( class_exists( 'Grunion_Editor_View' ) && is_customize_preview() ) {
+	add_action( 'init', 'hestia_jetpack_tinymce_fix' );
 }

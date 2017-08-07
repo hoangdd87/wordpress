@@ -6,12 +6,6 @@
  * @since Hestia 1.0
  */
 
-// include the alpha color picker control class
-$color_picker_path = get_template_directory() . '/inc/customizer-alpha-color-picker/class-hestia-customize-alpha-color-control.php';
-if ( file_exists( $color_picker_path ) ) {
-	require_once( $color_picker_path );
-}
-
 /**
  * Hook controls for Color Settings.
  *
@@ -100,6 +94,12 @@ input#searchsubmit,
 .btn.btn-primary:active:hover, 
 .btn.btn-primary:active:focus, 
 .btn.btn-primary:active:hover,
+.hestia-sidebar-open.btn.btn-rose,
+.hestia-sidebar-close.btn.btn-rose,
+.hestia-sidebar-open.btn.btn-rose:hover,
+.hestia-sidebar-close.btn.btn-rose:hover,
+.hestia-sidebar-open.btn.btn-rose:focus,
+.hestia-sidebar-close.btn.btn-rose:focus,
 .navbar .dropdown-menu li:hover > a,
  
 .label.label-primary,
@@ -196,6 +196,8 @@ input[type="button"],
 .woocommerce input.button:disabled, 
 .woocommerce input.button:disabled[disabled],
 .woocommerce a.button.wc-backward,
+.hestia-sidebar-open.btn.btn-rose,
+.hestia-sidebar-close.btn.btn-rose,
 .woocommerce div[id^=woocommerce_widget_cart].widget .buttons .button {
     -webkit-box-shadow: 0 2px 2px 0 ' . hestia_hex_rgba( $color_accent, '0.14' ) . ',0 3px 1px -2px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ',0 1px 5px 0 ' . hestia_hex_rgba( $color_accent, '0.12' ) . ';
     box-shadow: 0 2px 2px 0 ' . hestia_hex_rgba( $color_accent, '0.14' ) . ',0 3px 1px -2px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ',0 1px 5px 0 ' . hestia_hex_rgba( $color_accent, '0.12' ) . ';
@@ -236,6 +238,8 @@ input#searchsubmit:hover,
 .woocommerce input.button:disabled[disabled]:hover,
 .woocommerce a.button.wc-backward:hover,
 .woocommerce div[id^=woocommerce_widget_cart].widget .buttons .button:hover,
+.hestia-sidebar-open.btn.btn-rose:hover,
+.hestia-sidebar-close.btn.btn-rose:hover,
 .pagination span.current:hover{
 	-webkit-box-shadow: 0 14px 26px -12px' . hestia_hex_rgba( $color_accent, '0.42' ) . ',0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ';
     box-shadow: 0 14px 26px -12px ' . hestia_hex_rgba( $color_accent, '0.42' ) . ',0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px ' . hestia_hex_rgba( $color_accent, '0.2' ) . ';
@@ -256,9 +260,9 @@ background-image: -webkit-gradient(linear,left top, left bottom,from(' . esc_att
 }';
 
 		// Hover Effect for navbar items
-		// $custom_css .= '
-		// .navbar:not(.navbar-transparent) .navbar-nav > li:not(.btn) > a:hover, .navbar:not(.navbar-transparent) .navbar-nav > li.active:not(.btn) > a {
-		// color:' . esc_attr( $color_accent ) . '}';
+		 $custom_css .= '
+		 .navbar:not(.navbar-transparent) .navbar-nav > li:not(.btn) > a:hover, .navbar:not(.navbar-transparent) .navbar-nav > li.active:not(.btn) > a, .navbar:not(.navbar-transparent) .navbar-nav > li:not(.btn) > a:hover i {
+		 color:' . esc_attr( $color_accent ) . '}';
 	}// End if().
 
 	wp_add_inline_style( 'hestia_style', $custom_css );

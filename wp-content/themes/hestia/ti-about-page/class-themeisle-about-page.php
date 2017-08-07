@@ -597,7 +597,7 @@ if ( ! class_exists( 'Themeisle_About_Page' ) ) {
 						), network_admin_url( 'plugins.php' )
 					);
 					break;
-			}
+			}// End switch().
 		}
 
 		/**

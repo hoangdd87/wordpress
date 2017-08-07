@@ -62,7 +62,12 @@ if ( ! function_exists( 'hestia_elementor_default_styles' ) ) {
 	 * Enqueue default hestia styles for elementor.
 	 */
 	function hestia_elementor_default_styles() {
-		wp_enqueue_style( 'hestia-elementor-style', get_template_directory_uri() . '/assets/css/page-builder-style.css', array(), HESTIA_VERSION );
+		$disabled_color_schemes = get_option( 'elementor_disable_color_schemes' );
+		$disabled_typography_schemes = get_option( 'elementor_disable_typography_schemes' );
+
+		if ( $disabled_color_schemes === 'yes' && $disabled_typography_schemes === 'yes' ) {
+			wp_enqueue_style( 'hestia-elementor-style', get_template_directory_uri() . '/assets/css/page-builder-style.css', array(), HESTIA_VERSION );
+		}
 	}
 }
 

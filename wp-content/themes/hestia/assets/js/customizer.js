@@ -34,6 +34,18 @@
 		} );
 	} );
 
+    // Footer Options > Alternative Footer Style
+    wp.customize( 'hestia_alternative_footer_style', function( value ) {
+        value.bind( function() {
+            var footer = $( '.footer.footer-big' );
+            if( footer.hasClass( 'footer-black' ) ) {
+                footer.removeClass( 'footer-black' );
+            } else {
+                footer.addClass( 'footer-black' );
+            }
+        } );
+    } );
+
     // Appearance Settings > Appearance Settings > General Settings > Sidebar Width
     wp.customize( 'hestia_sidebar_width', function( value ) {
         value.bind( function( newval ) {
@@ -49,7 +61,7 @@
                     content_width = hestia_content_width - 8.33333333;
 
                     $('.content-sidebar-left, .content-sidebar-right, .page-content-wrap').css('width', hestia_content_width + '%');
-                    $('.blog-sidebar, .shop-sidebar.col-md-3').css('width', newval + '%');
+                    $('.blog-sidebar-wrapper, .shop-sidebar.col-md-3').css('width', newval + '%');
                 }
 
                 layout = wp.customize._value.hestia_blog_sidebar_layout();
@@ -62,19 +74,19 @@
                         if (layout === 'sidebar-left') {
                             $('.blog-posts-wrap, .archive-post-wrap').removeClass('col-md-offset-1');
                         } else {
-                            $('.blog-sidebar').removeClass('col-md-offset-1');
+                            $('.blog-sidebar-wrapper').removeClass('col-md-offset-1');
                         }
                     } else {
                         if (layout === 'sidebar-left') {
                             $('.blog-posts-wrap, .archive-post-wrap').addClass('col-md-offset-1');
                         } else {
-                            $('.blog-sidebar').addClass('col-md-offset-1');
+                            $('.blog-sidebar-wrapper').addClass('col-md-offset-1');
                         }
                     }
                     content_width = hestia_content_width - 8.33333333;
 
                     $('.blog-posts-wrap, .archive-post-wrap').css('width', content_width + '%');
-                    $('.blog-sidebar, .shop-sidebar-wrapper').css('width', newval + '%');
+                    $('.blog-sidebar-wrapper, .shop-sidebar-wrapper').css('width', newval + '%');
                 }
             }
         } );
@@ -251,7 +263,7 @@
 
 			//BUTTONS BOX SHADOW
 
-			style += 	'input#searchsubmit:hover, .pagination span.current, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary.active, .btn.btn-primary:active:focus, .btn.btn-primary:active:hover, .woocommerce nav.woocommerce-pagination ul li span.current, .added_to_cart.wc-forward:hover, .woocommerce .single-product div.product form.cart .button:hover, .woocommerce #respond input#submit:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, #add_payment_method .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce-checkout .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce input.button:disabled:hover, .woocommerce input.button:disabled[disabled]:hover, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li.active a, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li.active a:hover, .woocommerce-message a.button:hover, .woocommerce a.button.wc-backward:hover' +
+			style += 	'input#searchsubmit:hover, .pagination span.current, .btn.btn-primary:hover, .btn.btn-primary:focus, .btn.btn-primary:active, .btn.btn-primary.active, .btn.btn-primary:active:focus, .btn.btn-primary:active:hover, .woocommerce nav.woocommerce-pagination ul li span.current, .added_to_cart.wc-forward:hover, .woocommerce .single-product div.product form.cart .button:hover, .woocommerce #respond input#submit:hover, .woocommerce button.button:hover, .woocommerce input.button:hover, #add_payment_method .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce-cart .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce-checkout .wc-proceed-to-checkout a.checkout-button:hover, .woocommerce #respond input#submit.alt:hover, .woocommerce a.button.alt:hover, .woocommerce button.button.alt:hover, .woocommerce input.button.alt:hover, .woocommerce input.button:disabled:hover, .woocommerce input.button:disabled[disabled]:hover, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li.active a, .woocommerce div.product .woocommerce-tabs ul.tabs.wc-tabs li.active a:hover, .woocommerce-message a.button:hover, .woocommerce a.button.wc-backward:hover, .hestia-sidebar-open.btn.btn-rose:hover, .hestia-sidebar-close.btn.btn-rose:hover' +
 				'{	' +
 				'-webkit-box-shadow: 0 14px 26px -12px' + accentColorVariation3 + ',0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px ' + accentColorVariation2 + '!important;' +
 				'box-shadow: 0 14px 26px -12px ' + accentColorVariation3 + ',0 4px 23px 0 rgba(0,0,0,0.12),0 8px 10px -5px ' + accentColorVariation2 + '!important;'+
@@ -295,6 +307,39 @@
 			$('.page-header .title, .page-header h4, .page-header').css('color', newval);
 		});
 	});
+
+	//Header options > Top Bar > Background color
+    wp.customize( 'hestia_top_bar_background_color', function( value ) {
+        value.bind( function( newval ) {
+            $( '.hestia-top-bar' ).css( 'background-color', newval );
+        });
+    });
+
+    //Header options > Top Bar > Text color
+    wp.customize( 'hestia_top_bar_text_color', function( value ) {
+        value.bind( function( newval ) {
+            $( '.hestia-top-bar' ).css( 'color', newval );
+        });
+    });
+
+    //Header options > Top Bar > Link color
+    wp.customize( 'hestia_top_bar_link_color', function( value ) {
+        value.bind( function( newval ) {
+            $( '.hestia-top-bar a' ).css( 'color', newval );
+        });
+    });
+
+    //Header options > Top Bar > Link color on hover
+    wp.customize( 'hestia_top_bar_link_color_hover', function( value ) {
+        value.bind( function( newval ) {
+            $( '.hestia-top-bar a' ).hover( function(){
+                $(this).css( 'color', newval );
+			}, function(){
+				var initial = wp.customize._value.hestia_top_bar_link_color();
+                $(this).css( 'color', initial );
+			});
+        });
+    });
 
 	function convertHex(hex,opacity){
 		hex = hex.replace('#','');

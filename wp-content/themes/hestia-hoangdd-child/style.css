@@ -7,12 +7,24 @@
    Template: hestia
    Version: 0.1
    */
+* {
 
-.hoangdd-address{
+}
+
+.hoangdd-wrapper {
+    position: absolute;
+    top: 0;
+}
+
+.carousel-inner.header.header-filter {
+}
+
+.hoangdd-address {
     line-height: 24px;
 }
-.hoangdd-address-item{
-    color:white;
+
+.hoangdd-address-item {
+    color: white;
     font-size: 13px;
 }
 
@@ -20,6 +32,99 @@
     color: blue;
     font-weight: 500;
 }
-.white-color{
+
+.white-color {
     color: white;
+}
+
+.hoangdd-container-slider {
+    position: relative;
+    top: 0;
+}
+
+.hoangdd-header-text {
+    position: absolute;
+    top: 30%;
+    width: 100%;
+    text-align: center;
+}
+
+.hoangdd-opacity {
+    opacity: 0.7;
+    filter: alpha(opacity=70)
+}
+
+@media screen and (max-width: 570px) {
+    h1 {
+        font-size: 14px;
+
+    }
+
+    .hoangdd-header-text h3 {
+        display: none;
+    }
+}
+
+.hoangdd-picture-holder {
+    position: relative;
+    z-index: 999;
+    padding: 15px;
+}
+
+.hoangdd-textborder {
+    position: relative;
+    top: -100px;
+    /* bottom: -100px; */
+    padding-top: 100px;
+    border: solid thin lightgrey;
+    margin: 0px;
+    padding-right: 10px;
+    padding-left: 10px;
+    z-index: 1;
+    background: white;
+}
+
+.hoangdd-section-white {
+    background: white;
+}
+
+.hoangdd-section-grey {
+    background: #f1f1f1;
+}
+
+.hoangdd-p-nav {
+    font-size: 14px;
+    font-weight: 600;
+}
+
+.hoangdd-h4-title-col {
+    min-height: 50px;
+    font-size: 20px;
+    color: #02529b
+}
+
+.hoangdd-h2-title-section {
+    text-transform: uppercase;
+    font-size: 26px;
+    color: #02529b;
+    margin-top: -25px;
+}
+
+.hoangdd-col-hoder {
+    margin-bottom: -100px;
+}
+
+.flex-row {
+    display: flex;
+    -webkit-box-orient: horizontal !important;
+    -webkit-box-direction: normal !important;
+    -webkit-flex-direction: row !important;
+    -ms-flex-direction: row !important;
+    flex-direction: row !important
+}
+
+.justify-content-sm-around {
+    -webkit-justify-content: space-around !important;
+    -ms-flex-pack: distribute !important;
+    justify-content: space-around !important
 }

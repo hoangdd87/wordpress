@@ -1,4 +1,6 @@
+#accordion-panel-hestia_frontpage_sections .accordion-section[id^='accordion-section-sidebar-widgets'] .accordion-section-title.ui-sortable-handle:before,
 #accordion-panel-hestia_frontpage_sections .accordion-section[id^='accordion-section-hestia'] .accordion-section-title.ui-sortable-handle:before,
+#sub-accordion-panel-hestia_frontpage_sections .accordion-section[id^='accordion-section-sidebar-widgets'] .accordion-section-title.ui-sortable-handle:before,
 #sub-accordion-panel-hestia_frontpage_sections .accordion-section[id^='accordion-section-hestia'] .accordion-section-title.ui-sortable-handle:before{
     content: "\f545";
     font-family: dashicons;
@@ -9,7 +11,7 @@
 
 .ui-state-highlight{
     border: 1px dashed;
-    width: 297px;
+    width: 90%;
     height: 44px;
 }
 
