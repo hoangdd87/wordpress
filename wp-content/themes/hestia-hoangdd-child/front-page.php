@@ -15,10 +15,14 @@ get_header();
 ?>
 </header>
 <?php
-$anh1=get_field('anh_1');
-$anh2=get_field('anh_2');
-$anh3=get_field('anh_3');
-
+$anh1                 = get_field( 'anh_1' );
+$anh2                 = get_field( 'anh_2' );
+$anh3                 = get_field( 'anh_3' );
+$category_slug1       = get_field( 'category_slug1' );
+$number_posts_display = get_field( 'number_posts_display' );
+global $post1;
+$args  = array( 'numberposts' => 3, 'category_name' => 'ly-do-lua-chon-chunnam' );
+$post1 = get_posts( $args );
 ?>
 <div class="wrapper hoangdd-wrapper">
     <div class="container-fluid hoangdd-container-slider">
@@ -34,15 +38,15 @@ $anh3=get_field('anh_3');
                 <!-- Wrapper for slides -->
                 <div class="carousel-inner">
                     <div class="item header">
-                        <img src=<?php echo $anh1['url'];?> alt="Awesome Image" class="hoangdd-opacity">
+                        <img src=<?php echo $anh1['url']; ?> alt="Awesome Image" class="hoangdd-opacity">
 
                     </div>
                     <div class="item">
-                        <img src=<?php echo $anh2['url'];?> alt="Awesome Image" class="hoangdd-opacity">
+                        <img src=<?php echo $anh2['url']; ?> alt="Awesome Image" class="hoangdd-opacity">
 
                     </div>
                     <div class="item active">
-                        <img class="hoangdd-opacity" src=<?php echo $anh3['url'];?> alt="Awesome Image">
+                        <img class="hoangdd-opacity" src=<?php echo $anh3['url']; ?> alt="Awesome Image">
                     </div>
 
                 </div>
@@ -71,11 +75,13 @@ $anh3=get_field('anh_3');
 
     </div>
 
-    <!--Start Lý do lựa chọn-->
 
+    <!--Start section1-->
     <div class="section hoangdd-section-white">
         <div class="container">
-            <h2 class="title text-center hoangdd-h2-title-section">Tại sao lựa chọn du học Hàn Quốc với ICC</h2>
+            <a href="<?php echo get_category_link( get_category_by_slug( $category_slug1 )->term_id ); ?>">
+                <h2 class="title text-center hoangdd-h2-title-section"><?php echo get_field( 'section1_name' ) ?></h2>
+            </a>
             <div class="row flex-row justify-content-sm-around">
                 <div class="col-md-4 hoangdd-col-hoder">
                     <div class="hoangdd-picture-holder">
@@ -113,7 +119,7 @@ $anh3=get_field('anh_3');
                             trường Đại học hàng đầu Hàn Quốc ...</p>
                     </div>
                 </div>
-                
+
             </div>
         </div>
     </div>
