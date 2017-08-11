@@ -7,7 +7,7 @@
  */
 
 get_header();
-	hestia_output_wrapper_header_start( false ); ?>
+	hestia_output_wrapper_header_start( true ); ?>
 		<div class="container">
 			<div class="row">
 				<div class="col-md-10 col-md-offset-1 text-center">

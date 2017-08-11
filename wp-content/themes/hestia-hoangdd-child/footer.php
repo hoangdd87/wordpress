@@ -9,20 +9,7 @@
  */
 ?>
 
-<section class="contact-me">
-    <div class="container">
-        <div class="row">
-            <div class="col-md-8 col-md-offset-2 text-center">
-                <h2 class="title">Liên hệ với chúng tôi</h2>
-                <h5 class="description">Bạn hãy điền đầy đủ thông tin vào Form dưới đây và gửi lại cho chúng tôi để nhận
-                    được tư vấn sớm nhất</h5>
-            </div>
-        </div>
-        <div class="row">
-            <?php echo do_shortcode( '[ninja_form id=1]' ); ?>
-        </div>
-    </div>
-</section>
+
 <footer class="footer footer-black footer-big">
     <div class="container">
 
