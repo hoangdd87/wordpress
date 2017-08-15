@@ -88,7 +88,7 @@ $anh3 = get_field( 'anh_3' );
 
 					?>
 
-                    <div class="col-md-4 hoangdd-col-hoder">
+                    <div class="col-sm-4 hoangdd-col-hoder">
                         <a href="<?php echo $post->guid;
 						$descriptions = get_post_custom_values( 'description', $post->ID );
 						$description  = $descriptions[0];

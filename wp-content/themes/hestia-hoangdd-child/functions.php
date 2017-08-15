@@ -69,7 +69,7 @@ function wpds_thumbnail_error() {
 		delete_transient( "has_post_thumbnail" );
 	}
 }
-add_image_size( 'hoangdd-thumb', 600, 400, true );
+add_image_size( 'hoangdd-thumb', 750, 500, true );
 
 
 
