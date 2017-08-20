@@ -118,7 +118,10 @@
 .hoangdd-col-hoder {
     margin-bottom: -100px;
 }
-
+.hoangdd-top-60{
+    position: relative;
+    top: 70px;
+}
 
 
 @media screen and (min-width: 992px) {

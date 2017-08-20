@@ -70,77 +70,64 @@ $anh3 = get_field( 'anh_3' );
         </div>
 
     </div>
-    <!--Start section1-->
+
 	<?php
-	$category_slug1       = get_field( 'category_slug1' );
-	$number_posts_display = get_field( 'number_posts_display' );
-	$args                 = array( 'numberposts' => 3, 'category_name' => 'ly-do-lua-chon-chunnam' );
-	$postlist1            = get_posts( $args );
-	?>
-    <div class="section hoangdd-section-white">
-        <div class="container">
-            <a href="<?php echo get_category_link( get_category_by_slug( $category_slug1 )->term_id ); ?>">
-                <h2 class="title text-center hoangdd-h2-title-section"><?php echo get_field( 'section1_name' ) ?></h2>
-            </a>
-            <div class="row flex-row justify-content-sm-around">
-				<?php foreach ( $postlist1 as $post ) :
-					$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'hoangdd-thumb');
+	$sections = new WP_Query( array(
+		'post_type' => 'section',
+		'meta_key'  => 'orderid',
+		'orderby'   => 'meta_value_num',
+		'order'     => 'ASC'
+	) );
+	$dem=0;
+	while ( $sections->have_posts() ) {
+		$sections->the_post();
+		$dem++;
+		$classstr=($dem%2!==0?"hoangdd-section-white":"hoangdd-section-grey");
+		$slug = get_field( 'slug' );//Get the slug of section
+		$args                 = array( 'meta_key'         => 'show_on_home_page',
+                                       'meta_value'       => true, 'category_name' => $slug );
+        $postlist             = get_posts( $args );//Get recent posts to display in section
 
-					?>
+		?>
+        <div class="section <?php echo $classstr;?>">
+            <div class="container">
+                <a href="<?php echo get_category_link( get_category_by_slug( $slug )->term_id ); ?>">
+                    <h2 class="title text-center hoangdd-h2-title-section"><?php echo the_title() ?></h2>
+                </a>
+                <div class="row flex-row justify-content-sm-around">
+					<?php foreach ( $postlist as $post ) :
+						$image = wp_get_attachment_image_src( get_post_thumbnail_id( $post->ID ), 'hoangdd-thumb' );
 
-                    <div class="col-sm-4 hoangdd-col-hoder">
-                        <a href="<?php echo $post->guid;
-						$descriptions = get_post_custom_values( 'description', $post->ID );
-						$description  = $descriptions[0];
-						$title        = $post->post_title;
-						?>">
-                            <div class="hoangdd-picture-holder">
-                                <img src="<?php echo $image[0]; ?>" alt="Thumbnail Image"
-                                     class="rounded img-fluid img-raised">
-                            </div>
-                            <div class="hoangdd-textborder">
-                                <h4 class="title text-center hoangdd-h4-title-col"><?php echo $title ?></h4>
-                                <p class="text-justify"> <?php echo $description; ?></p>
-                            </div>
-                        </a>
-                    </div>
+						?>
 
-				<?php endforeach; ?>
-            </div>
-        </div>
-    </div>
-    <!--End Lý do lựa chọn-->
-    <!--Start Thông báo tuyển sinh-->
-    <div class="section hoangdd-section-grey">
-        <div class="container">
-            <h2 class="title text-center hoangdd-h2-title-section">Thông báo tuyển du học sinh</h2>
-            <div class="row flex-row justify-content-sm-around">
-                <div class="col-md-4 hoangdd-col-hoder">
-                    <div class="hoangdd-picture-holder">
-                        <img src="assets/img/home-page/tuyensinh1.jpg" alt="Thumbnail Image"
-                             class="rounded img-fluid img-raised">
-                    </div>
-                    <div class="hoangdd-textborder">
-                        <h4 class="title text-center hoangdd-h4-title-col">Thông báo tuyển du học sinh VISA</h4>
-                        <p class="text-justify"> Chunnam là một trong các trường Đại học hàng đầu Hàn Quốc
-                            ... Chunnam là một trong các trường Đại học hàng đầu Hàn Quốc ... Chunnam là một trong các
-                            trường Đại học hàng đầu Hàn Quốc ...</p>
-                    </div>
-                </div>
-                <div class="col-md-4 hoangdd-col-hoder">
-                    <div class="hoangdd-picture-holder">
-                        <img src="assets/img/home-page/tuyensinh2.png" alt="Thumbnail Image"
-                             class="rounded img-fluid img-raised">
-                    </div>
-                    <div class="hoangdd-textborder">
-                        <h4 class="title text-center hoangdd-h4-title-col">Thông báo tuyển nghiên cứu sinh VISA</h4>
-                        <p class="text-justify"> Chunnam là một trong các trường Đại học hàng đầu Hàn Quốc
-                            ... Chunnam là một trong các trường Đại học hàng đầu Hàn Quốc ... Chunnam là một trong các
-                            trường Đại học hàng đầu Hàn Quốc ...</p>
-                    </div>
+                        <div class="col-sm-4 hoangdd-col-hoder">
+                            <a href="<?php echo $post->guid;
+							$descriptions = get_post_custom_values( 'description', $post->ID );
+							$description  = $descriptions[0];
+							$title        = $post->post_title;
+							?>">
+                                <div class="hoangdd-picture-holder">
+                                    <img src="<?php echo $image[0]; ?>" alt="Thumbnail Image"
+                                         class="rounded img-fluid img-raised">
+                                </div>
+                                <div class="hoangdd-textborder">
+                                    <h4 class="title text-center hoangdd-h4-title-col"><?php echo $title ?></h4>
+                                    <p class="text-justify"> <?php echo $description; ?></p>
+                                </div>
+                            </a>
+                        </div>
+
+					<?php endforeach; ?>
                 </div>
             </div>
         </div>
+
+	<?php } ?>
+
+
+
+
+    <div class="section">
         <section id='hoangdd-contact-me' class="contact-me">
             <div class="container">
                 <div class="row">
@@ -157,6 +144,7 @@ $anh3 = get_field( 'anh_3' );
             </div>
         </section>
     </div>
+
     <!--End Thông báo tuyển sinh-->
 
 
