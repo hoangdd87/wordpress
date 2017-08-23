@@ -25,7 +25,7 @@
 	if ( ! is_single() ) {
 		echo 'class="wrapper"';
 	} else {
-		post_class( 'wrapper hoangdd-top-60' );
+		post_class( 'wrapper' );
 	}
 ?>
 >

@@ -5,7 +5,7 @@ Theme URI:      https://themeisle.com/themes/hestia/
 Author:         ThemeIsle
 Author URI:     https://themeisle.com
 Description:    Hestia is a modern WordPress theme for professionals. It fits creative business, small businesses (restaurants, wedding planners, sport/medical shops), startups, corporate businesses, online agencies and firms, portfolios, ecommerce (WooCommerce), and freelancers. It has a multipurpose one-page design, widgetized footer, blog/news page and a clean look, is compatible with: Flat Parallax Slider, Photo Gallery, Travel Map and Elementor Page Builder . The theme is responsive, WPML, Retina ready, SEO friendly, and uses Material Kit for design.
-Version:        1.1.42
+Version:        1.1.43
 License:        GNU General Public License v2 or later
 License URI:    http://www.gnu.org/licenses/gpl-2.0.html
 Text Domain:    hestia
@@ -1212,16 +1212,16 @@ fieldset[disabled] .form-group .form-control {
 }
 
 .form-control::-moz-placeholder, .form-group .form-control::-moz-placeholder,
+.form-control:-ms-input-placeholder, .form-group
 .form-control:-ms-input-placeholder,
-.form-group .form-control:-ms-input-placeholder,
+.form-control::-webkit-input-placeholder, .form-group
 .form-control::-webkit-input-placeholder,
-.form-group .form-control::-webkit-input-placeholder,
+.checkbox label, .form-group
 .checkbox label,
-.form-group .checkbox label,
+.radio label, .form-group
 .radio label,
-.form-group .radio label,
-label,
-.form-group label {
+label, .form-group
+label {
   color: #aaa;
   font-size: 14px;
   font-weight: 400;
@@ -1720,7 +1720,6 @@ body:not(.home) .navbar-default .navbar-nav > .active > a, body:not(.home) .navb
 }
 .navbar.hestia_center .navbar-collapse {
   text-align: center;
-  display: block !important;
 }
 .navbar.hestia_center .navbar-header {
   display: block !important;
@@ -3119,11 +3118,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="facebook.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="facebook.com"]:hover:before {
   color: #3b5998;
+}
+
+.footer-black .footer-menu li a[href*="facebook.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="twitter.com"] {
@@ -3134,11 +3137,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="twitter.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="twitter.com"]:hover:before {
   color: #55acee;
+}
+
+.footer-black .footer-menu li a[href*="twitter.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="pinterest.com"] {
@@ -3149,11 +3156,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="pinterest.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="pinterest.com"]:hover:before {
   color: #cc2127;
+}
+
+.footer-black .footer-menu li a[href*="pinterest.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="google.com"] {
@@ -3164,11 +3175,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="google.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="google.com"]:hover:before {
   color: #dd4b39;
+}
+
+.footer-black .footer-menu li a[href*="google.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="linkedin.com"] {
@@ -3179,11 +3194,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="linkedin.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="linkedin.com"]:hover:before {
   color: #0976b4;
+}
+
+.footer-black .footer-menu li a[href*="linkedin.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="dribbble.com"] {
@@ -3194,11 +3213,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="dribbble.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="dribbble.com"]:hover:before {
   color: #ea4c89;
+}
+
+.footer-black .footer-menu li a[href*="dribbble.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="github.com"] {
@@ -3209,11 +3232,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="github.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="github.com"]:hover:before {
   color: #333;
+}
+
+.footer-black .footer-menu li a[href*="github.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="youtube.com"] {
@@ -3224,11 +3251,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="youtube.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="youtube.com"]:hover:before {
   color: #e52d27;
+}
+
+.footer-black .footer-menu li a[href*="youtube.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="instagram.com"] {
@@ -3239,11 +3270,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="instagram.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="instagram.com"]:hover:before {
   color: #125688;
+}
+
+.footer-black .footer-menu li a[href*="instagram.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="reddit.com"] {
@@ -3254,11 +3289,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="reddit.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="reddit.com"]:hover:before {
   color: #ff4500;
+}
+
+.footer-black .footer-menu li a[href*="reddit.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="tumblr.com"] {
@@ -3269,11 +3308,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="tumblr.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="tumblr.com"]:hover:before {
   color: #35465c;
+}
+
+.footer-black .footer-menu li a[href*="tumblr.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="behance.com"] {
@@ -3284,11 +3327,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="behance.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="behance.com"]:hover:before {
   color: #1769ff;
+}
+
+.footer-black .footer-menu li a[href*="behance.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="snapchat.com"] {
@@ -3299,11 +3346,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="snapchat.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="snapchat.com"]:hover:before {
   color: #fffc00;
+}
+
+.footer-black .footer-menu li a[href*="snapchat.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="deviantart.com"] {
@@ -3314,11 +3365,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="deviantart.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="deviantart.com"]:hover:before {
   color: #05cc47;
+}
+
+.footer-black .footer-menu li a[href*="deviantart.com"]:before {
+  color: #fff;
 }
 
 .footer-big .footer-menu li a[href*="vimeo.com"] {
@@ -3329,11 +3384,15 @@ table > tbody > tr:last-child {
 .footer-big .footer-menu li a[href*="vimeo.com"]:before {
   content: "";
   font-family: 'FontAwesome';
-  color: #fff;
+  color: #3c4858;
   font-size: 16px;
 }
 .footer-big .footer-menu li a[href*="vimeo.com"]:hover:before {
   color: #1ab7ea;
+}
+
+.footer-black .footer-menu li a[href*="vimeo.com"]:before {
+  color: #fff;
 }
 
 /*--------------------------------------------------------------

@@ -1,11 +1,18 @@
 
+ ### v1.1.43 - 2017-08-08 
+ **Changes:** 
+ * Fixed issue with colors not working in the Features section
+* Fixed issue with menu opening automatically on mobile devices
+* Fixed issue with footer icons color when the Alternative Footer option is selected
+ 
  ### v1.1.42 - 2017-08-04 
  **Changes:** 
- * * Fix feature section controls.
-* * Fix testimonial section controls. 
-* * Fix JetPack compatibility issues in customizer.
-* * Fix subscribe section.
-* * Improved UX of customizer.
+ 
+* Fix feature section controls.
+* Fix testimonial section controls. 
+* Fix JetPack compatibility issues in customizer.
+* Fix subscribe section.
+* Improved UX of customizer.
  
 
 ### 1.1.41 - 28/07/2017

@@ -19,7 +19,7 @@ jQuery(document).ready(function ($) {
     // Active Carousel
     $('.carousel').carousel({
         interval: 5000,
-        pause:'none'
+        pause: 'none'
     });
 
     var transparent = true;
@@ -45,17 +45,7 @@ jQuery(document).ready(function ($) {
     if (window_width >= 768) {
         var big_image = $('.page-header[data-parallax="active"]');
         if (big_image.length !== 0) {
-            $(window).on('scroll', debounce(function () {
-                if (isElementInViewport(big_image)) {
-                    var oVal = ($(window).scrollTop() / 3);
-                    big_image.css({
-                        'transform': 'translate3d(0,' + oVal + 'px,0)',
-                        '-webkit-transform': 'translate3d(0,' + oVal + 'px,0)',
-                        '-ms-transform': 'translate3d(0,' + oVal + 'px,0)',
-                        '-o-transform': 'translate3d(0,' + oVal + 'px,0)'
-                    });
-                }
-            }, 4));
+
         }
     }
 

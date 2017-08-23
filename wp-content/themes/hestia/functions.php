@@ -24,7 +24,7 @@
  * @since Hestia 1.0
  */
 
-define( 'HESTIA_VERSION', '1.1.42' );
+define( 'HESTIA_VERSION', '1.1.43' );
 
 define( 'HESTIA_VENDOR_VERSION', '1.0.1' );
 
@@ -465,52 +465,6 @@ function hestia_include_features() {
 }
 
 add_action( 'after_setup_theme','hestia_include_features', 0 );
-
-/**
- * Adds inline style from customizer
- *
- * @since Hestia 1.0
- * @modified 1.1.30
- */
-function hestia_inline_style() {
-	$custom_css              = '';
-	$hestia_features_content = get_theme_mod(
-		'hestia_features_content', json_encode(
-			array(
-				array(
-					'color'      => '#e91e63',
-				),
-				array(
-					'color'      => '#00bcd4',
-				),
-				array(
-					'color'      => '#4caf50',
-				),
-			)
-		)
-	);
-
-	if ( ! empty( $hestia_features_content ) ) {
-		$hestia_features_content = json_decode( $hestia_features_content );
-		if ( ! empty( $hestia_features_content ) ) {
-			foreach ( $hestia_features_content as $key => $features_item ) {
-				$box_nb = $key + 1;
-				if ( ! empty( $features_item->color ) ) {
-					$color = ! empty( $features_item->color ) ? apply_filters( 'hestia_translate_single_string', $features_item->color, 'Features section' ) : '';
-					$custom_css .= '.feature-box:nth-child(' . esc_attr( $box_nb ) . ') .icon {
-                            color: ' . esc_attr( $color ) . ';
-				}';
-				}
-			}
-		}
-	}
-	wp_add_inline_style( 'hestia_style', $custom_css );
-}
-
-add_action( 'wp_enqueue_scripts', 'hestia_inline_style' );
-
-// Add Reading Time to Blog Section.
-add_action( 'hestia_blog_reading_time', 'hestia_reading_time' );
 
 // Add Related Posts to Single Posts.
 add_action( 'hestia_blog_related_posts', 'hestia_related_posts' );

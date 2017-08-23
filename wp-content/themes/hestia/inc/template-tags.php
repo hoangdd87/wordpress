@@ -134,7 +134,7 @@ if ( ! function_exists( 'hestia_featured_header' ) ) :
 	}
 endif;
 
-if ( ! function_exists( 'hestia_output_wrapper_header_top' ) ) :
+if ( ! function_exists( 'hestia_output_wrapper_header_start' ) ) :
 	/**
 	 * Echoes The Header
 	 *
@@ -694,6 +694,8 @@ function hestia_the_footer_content() {
 	$footer_style = get_theme_mod( 'hestia_alternative_footer_style', 0 );
 	if ( isset( $footer_style ) && $footer_style == 0 ) {
 		$footer_style = 'footer-black';
+	} else {
+		$footer_style = '';
 	}
 
 	/**

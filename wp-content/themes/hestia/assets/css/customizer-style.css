@@ -1,11 +1,13 @@
 .accordion-section-title .button {
-	font-weight: 400;
+  font-weight: 400;
 }
 
 .hestia-notice {
-	position: relative;
+  position: relative;
 }
 
 #sub-accordion-section-hestia_top_bar .customize-control-radio-image label:first-of-type {
-	float: none !important;
+  float: none !important;
 }
+
+/*# sourceMappingURL=customizer-style.css.map */
